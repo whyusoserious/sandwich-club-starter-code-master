@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -45,14 +46,9 @@ public class DetailActivity extends AppCompatActivity {
         catch (JSONException e)
         {
             e.printStackTrace();
-            if (sandwich == null)
-            {
-                closeOnError();
-                return;
-            }
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -65,7 +61,16 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
+        TextView desc = findViewById(R.id.description_tv);
+        TextView place = findViewById(R.id.origin_tv);
+        TextView ingr = findViewById(R.id.ingredients_tv);
 
+        desc.setText(sandwich.getDescription());
+        place.setText(sandwich.getPlaceOfOrigin());
+        for (int i = 0; i < (sandwich.getIngredients()).size(); i++)
+        {
+            ingr.append((sandwich.getIngredients().get(i) + "\n"));
+        }
     }
 }

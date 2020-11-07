@@ -16,10 +16,10 @@ public class JsonUtils {
         List<String> foodlist = new ArrayList<>();
 
         JSONObject jameson = new JSONObject(json);
-        JSONObject Jname = jameson.getJSONObject("Jname");
+        JSONObject Jname = jameson.getJSONObject("name");
         name = Jname.getString("mainName");
 
-        JSONArray array = Jname.getJSONArray("asArray");
+        JSONArray array = Jname.getJSONArray("alsoKnownAs");
         if (array != null)
         {
             for (int i = 0; i < array.length(); i++)
@@ -27,7 +27,7 @@ public class JsonUtils {
                 list.add(array.getString(i));
             }
         }
-        JSONArray food = jameson.getJSONArray("food");
+        JSONArray food = jameson.getJSONArray("ingredients");
         if (food != null)
         {
             for (int i = 0; i < food.length(); i++)
@@ -35,9 +35,9 @@ public class JsonUtils {
                 foodlist.add(food.getString(i));
             }
         }
-        place = jameson.getString("place");
-        desc = jameson.getString("desc");
-        img = jameson.getString("img");
+        place = jameson.getString("placeOfOrigin");
+        desc = jameson.getString("description");
+        img = jameson.getString("image");
         return new Sandwich(name, list, place, desc, img, foodlist);
     }
 }
