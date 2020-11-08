@@ -3,6 +3,8 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,13 +66,11 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
         TextView desc = findViewById(R.id.description_tv);
         TextView place = findViewById(R.id.origin_tv);
-        TextView ingr = findViewById(R.id.ingredients_tv);
+        RecyclerView rv = findViewById(R.id.rv_main);
 
         desc.setText(sandwich.getDescription());
         place.setText(sandwich.getPlaceOfOrigin());
-        for (int i = 0; i < (sandwich.getIngredients()).size(); i++)
-        {
-            ingr.append((sandwich.getIngredients().get(i) + "\n"));
-        }
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new RViewAdapter_second(this, sandwich.getIngredients()));
     }
 }

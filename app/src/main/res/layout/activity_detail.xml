@@ -9,7 +9,7 @@
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" tools:layout_editor_absoluteY="-96dp"
+            android:layout_height="match_parent" tools:layout_editor_absoluteY="126dp"
             tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
@@ -54,14 +54,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/detail_ingredients_label"
                     android:textStyle="bold"/>
-            <TextView
-                    android:id="@+id/ingredients_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/also_known_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="456dp"/>
 
         </LinearLayout>
     </ScrollView>
